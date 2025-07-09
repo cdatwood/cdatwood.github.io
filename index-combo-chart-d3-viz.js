@@ -1,6 +1,3 @@
-const dscc = require('@google/dscc');
-const d3 = require('d3');
-
 function drawViz(data, config) {
   const container = document.getElementById('viz');
   container.innerHTML = '';
@@ -55,13 +52,11 @@ function drawViz(data, config) {
     .attr("transform", `translate(${innerWidth},0)`)
     .call(d3.axisRight(yRight));
 
-  // Configure series: choose type and axis
   const series = [
     { key: 'm1', type: 'bar', axis: 'left', color: 'steelblue' },
     { key: 'm2', type: 'line', axis: 'right', color: 'orange' }
   ];
 
-  // Draw bars
   series.filter(s => s.type === 'bar').forEach(s => {
     const y = s.axis === 'left' ? yLeft : yRight;
     chart.selectAll(`.bar-${s.key}`)
@@ -77,12 +72,10 @@ function drawViz(data, config) {
       .attr("transform", `translate(${series.indexOf(s) * (xScale.bandwidth() / series.length)}, 0)`);
   });
 
-  // Draw lines with gradient fill
   series.filter(s => s.type === 'line').forEach(s => {
     const y = s.axis === 'left' ? yLeft : yRight;
     const gradientId = `gradient-${s.key}`;
 
-    // Define gradient
     const defs = svg.append("defs");
     const gradient = defs.append("linearGradient")
       .attr("id", gradientId)
@@ -101,7 +94,6 @@ function drawViz(data, config) {
       .attr("stop-color", s.color)
       .attr("stop-opacity", 0);
 
-    // Area under line
     const area = d3.area()
       .x(d => xScale(d.xKey) + xScale.bandwidth() / 2)
       .y0(innerHeight)
@@ -112,7 +104,6 @@ function drawViz(data, config) {
       .attr("fill", `url(#${gradientId})`)
       .attr("d", area);
 
-    // Line path
     const line = d3.line()
       .x(d => xScale(d.xKey) + xScale.bandwidth() / 2)
       .y(d => y(d[s.key]));

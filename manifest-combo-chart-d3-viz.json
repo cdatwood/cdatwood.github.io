@@ -1,17 +1,19 @@
 {
   "dataStudio": {
     "name": "D3 Combo Chart",
-    "logoUrl": "https://example.com/logo.png",
-    "company": "Burly Bottom Designs",
-    "supportUrl": "https://example.com/support"
+    "company": "Your Company",
+    "supportUrl": "https://yourdomain.com/help"
   },
   "components": [
     {
-      "id": "d3_combo_chart_bbd",
+      "id": "d3_combo_chart",
       "file": "index-combo-chart-d3-viz.js",
       "modules": ["corechart"],
       "name": "D3 Combo Chart",
-      "description": "A custom D3.js combo chart with two dimensions and two metrics"
+      "description": "Combo chart with bar and line and gradients",
+      "script": [
+        "https://d3js.org/d3.v7.min.js"
+      ]
     }
   ],
   "devMode": true
