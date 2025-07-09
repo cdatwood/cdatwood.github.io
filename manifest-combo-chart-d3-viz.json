@@ -8,7 +8,7 @@
   "components": [
     {
       "id": "d3_combo_chart_bbd",
-      "file": "index.js",
+      "file": "index-combo-chart-d3-viz.js",
       "modules": ["corechart"],
       "name": "D3 Combo Chart",
       "description": "A custom D3.js combo chart with two dimensions and two metrics"
